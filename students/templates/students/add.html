@@ -1,0 +1,44 @@
+{% extends 'students/base.html' %}
+
+{% block body %}
+
+
+{% if success %}
+
+<div class="alert alert-success" role="alert">
+
+    Student Added Successfully .
+
+    <a href="{% url 'index' %}" class="alert-link" > Go Back to Home.</a>
+
+</div>
+
+{% else %}
+
+<h3>Add Student</h3>
+<div class="row justify-content-center">
+    <div class="col-6">
+        <div class="card text-white bg-dark mb-3" >
+            <div class="card-header">
+                <i class="fa-solid fa-address-card fa-lg"></i> Student as Register
+            </div>
+            <div class="card-body">
+             <form action="{% url 'add' %}" method="POST">
+
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <a href="{% url 'index' %}">Cancel</a>
+
+             </form>
+            </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+
+{% endblock %}
